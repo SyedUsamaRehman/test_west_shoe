@@ -7,8 +7,26 @@ const ShopBy = ({ filter, title }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
+  const data ={ bestSellers: [
+    {_id:1, img: "/GenInfo/adidas.jpg", title: "Adidas", to: "/search/adidas" },
+    { _id:2, img: "/GenInfo/nike.png", title: "Nike", to: "/search/nike" },
+    { _id:3, img: "/GenInfo/skechers.jpg", title: "Skechers", to: "/search/skechers" },
+    { _id:4, img: "/GenInfo/puma.jpg", title: "Puma", to: "/search/puma" },
+  ]
+}
+
+
   useEffect(() => {
     let isMounted = true;
+
+
+if (data[filter]) {
+  setProducts(data[filter]);
+  setLoading(false);
+  return;
+}
+
     const fetchData = async () => {
       try {
         const res = await axios.get(
